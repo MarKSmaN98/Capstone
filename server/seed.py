@@ -1,0 +1,37 @@
+from config import app, db
+from models import User, Cart, Item, CartItem
+
+with app.app_context():
+    User.query.delete()
+    Cart.query.delete()
+    Item.query.delete()
+    CartItem.query.delete()
+
+    u = User(name="Mark", email='example.com', age=18, password='123')
+    db.session.add(u)
+    db.session.commit()
+    c = Cart(name="Cart1", user_id='1')
+    db.session.add(c)
+    db.session.commit()
+    c = Cart(name="Cart2", user_id='1')
+    db.session.add(c)
+    db.session.commit()
+    i = Item(title="lil stinker", tags='a,b,c', price=15.95, img='example.com')
+    db.session.add(i)
+    db.session.commit()
+    i = Item(title="big stinker", tags='a,b,c', price=35.95, img='example.com')
+    db.session.add(i)
+    db.session.commit()
+    i = Item(title="med stinker", tags='a,b,c', price=25.95, img='example.com')
+    db.session.add(i)
+    db.session.commit()
+    ci = CartItem(cart_id=1, item_id=1)
+    db.session.add(ci)
+    db.session.commit()
+    ci = CartItem(cart_id=1, item_id=3)
+    db.session.add(ci)
+    db.session.commit()
+    ci = CartItem(cart_id=2, item_id=2)
+    db.session.add(ci)
+    db.session.commit()
+
