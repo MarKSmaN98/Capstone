@@ -7,7 +7,7 @@ with app.app_context():
     Item.query.delete()
     CartItem.query.delete()
 
-    u = User(name="Mark", email='example.com', age=18, password='123')
+    u = User(name="Mark", username="markusername", email='example.com', age=18, password='123')
     db.session.add(u)
     db.session.commit()
     c = Cart(name="Cart1", user_id='1')

@@ -11,10 +11,12 @@ class User(db.Model, SerializerMixin):
     serialize_rules = ('-user_carts', '-cart.cart_user')
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False)    
+    username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     age = db.Column(db.Integer, nullable=False)
     password = db.Column(db.String(120), nullable=False)
+    type = db.Column(db.Integer, nullable=False, default=0) #0 is normal user, 1 is seller
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_carts = db.relationship('Cart', backref='user', lazy=True)
 
